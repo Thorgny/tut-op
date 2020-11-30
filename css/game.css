@@ -6,22 +6,34 @@
 }
 
 header {
-    height: 10vh;
     display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
+    height: 10vh;
+    background-color:#e17055;
 }
 
-h1 {
-    font-size: 3rem;
+nav {
+    display: flex;
+    padding-left: 100px;
+    align-items: center;
+    background-color:#e17055;
+    width: 25%;
+}
+
+nav img {
+    width: 20%;
+}
+
+#headline {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
 }
 
 main {
     display: flex;
     width: 90%;
     margin: 0 auto;
-    height: 85vh;
+    height: 80vh;
     color: lightslategray;
 }
 
@@ -30,6 +42,7 @@ main > section {
     margin: 0 20px;
     box-shadow: 2px 0 9px 2px #aaaaaa;
     border-radius: 2px;
+    background-color: #F5c64d;
 }
 
 #playerOne {
@@ -53,7 +66,8 @@ main > section {
     margin: 20px 0;
 }
 
-.controls label{
+#rollBtn {
+    font-size: 2rem;
     background-color: teal;
     padding: 10px 30px;
     color: whitesmoke;
@@ -62,7 +76,16 @@ main > section {
     border-radius: 0;
 }
 
-.controls input{
+.controls label {
+    background-color: teal;
+    padding: 10px 30px;
+    color: whitesmoke;
+    cursor: pointer;
+    border: none;
+    border-radius: 0;
+}
+
+.controls input {
     opacity: 1;
 }
 
@@ -94,15 +117,9 @@ h2 {
 }
 
 footer {
-    background-color: black;
-    color: white;
-    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#goBack{
-    text-align: center;
-    margin-top:10px;
+    height: 10vh;
+    background-color: #00cec9;
 }

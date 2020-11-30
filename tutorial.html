@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/tutorial.css">
+    <link rel="stylesheet" href="css/prism.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="index.html">
+                <img src="img/jsTutorialLogo.png" alt="JS tutorial logo">
+            </a>
+        </nav>
+        <div id="headline">
+            <h1>JS Tutorial for Higher or Lower</h1>
+        </div>
+    </header>
+
+    <main>
+        <aside>
+            <ul>
+                <li>
+                    <a href="#preamble">Preamble</a>
+                </li>
+                <li>
+                    <a href="#lesson1">Lesson 1: Variables</a>
+                </li>
+                <li>
+                    <a href="#lesson2">Lesson 2: Operators</a>
+                </li>
+                <li>
+                    <a href="#lesson3">Lesson 3: Functions</a>
+                </li>
+                <li>
+                    <a href="#lesson4">Lesson 4: addEventListener</a>
+                </li>
+                <li>
+                    <a href="#lesson5">Lesson 5: Randomizer</a>
+                </li>
+                <li>
+                    <a href="#lesson6">Lesson 6: Arrays</a>
+                </li>
+                <li>
+                    <a href="#lesson7">Lesson 7: if ... else</a>
+                </li>
+                <li>
+                    <a href="#lesson8">Lesson 8: Alerts</a>
+                </li>
+            </ul>
+        </aside>
+
+        <section>
+            <article>
+                <div class="lesson-hl">
+                    <h2 id="preamble">Preamble</h2>
+                    <h3>The HTML base</h3>
+                </div>
+                <p>
+                    The secret first step of this tutorial is: Learn basic HTML and CSS. So for this tutorial we are
+                    assuming that you already know how this works.
+                    <br><br>
+                    So, just to make it easier we've put in the necessary HTML needed, and you can do your own styling.
+                    If it doesn't make sense - go brush up on your basics.
+                </p>
+                <br>
+                <pre>
+                    <code class="language-html">
+                        &#x3C;!DOCTYPE html&#x3E;
+                        &#x3C;html lang=&#x22;en&#x22;&#x3E;
+                        &#x3C;head&#x3E;
+                            &#x3C;meta charset=&#x22;UTF-8&#x22;&#x3E;
+                            &#x3C;meta name=&#x22;viewport&#x22; content=&#x22;width=device-width, initial-scale=1.0&#x22;&#x3E;
+                            &#x3C;title&#x3E;Higher or Lower&#x3C;/title&#x3E;
+                            &#x3C;link rel=&#x22;stylesheet&#x22; href=&#x22;css/game.css&#x22;&#x3E;
+                        &#x3C;/head&#x3E;
+                
+                        &#x3C;body&#x3E;
+                            &#x3C;header&#x3E;
+                                &#x3C;h1&#x3E;Higher or Lower&#x3C;/h1&#x3E;
+                            &#x3C;/header&#x3E;
+                
+                            &#x3C;main&#x3E;
+                                &#x3C;section id=&#x22;playerOne&#x22;&#x3E;
+                                    &#x3C;h3&#x3E;Player 1&#x3C;/h3&#x3E;
+                                    &#x3C;div class=&#x22;controls&#x22;&#x3E;
+                                        &#x3C;label&#x3E;Higher
+                                            &#x3C;input type=&#x22;radio&#x22; class=&#x22;controlBtns&#x22; id=&#x22;player1High&#x22; /&#x3E;
+                                        &#x3C;/label&#x3E;
+                                        &#x3C;p&#x3E;Points:&#x3C;span id=&#x22;player1Points&#x22;&#x3E;0&#x3C;/span&#x3E;&#x3C;/p&#x3E;
+                                        &#x3C;label&#x3E;Lower
+                                            &#x3C;input type=&#x22;radio&#x22; class=&#x22;controlBtns&#x22; id=&#x22;player1Low&#x22; /&#x3E;
+                                        &#x3C;/label&#x3E;
+                                    &#x3C;/div&#x3E;
+                                &#x3C;/section&#x3E;
+                                &#x3C;section id=&#x22;numberGen&#x22;&#x3E;
+                                    &#x3C;h2&#x3E;Community Number&#x3C;/h2&#x3E;
+                                    &#x3C;p id=&#x22;explainer&#x22;&#x3E;
+                                        Roll a random number using the button below.&#x3C;br&#x3E;
+                                        Afterwards each player guess whether the next number is higher or lower.
+                                    &#x3C;/p&#x3E;
+                                    &#x3C;div class=&#x22;controls&#x22;&#x3E;
+                                        &#x3C;button id=&#x22;rollBtn&#x22;&#x3E;Roll Number&#x3C;/button&#x3E;
+                                        &#x3C;p id=&#x22;roll&#x22;&#x3E;Roll Me!&#x3C;/p&#x3E;
+                                    &#x3C;/div&#x3E;
+                                &#x3C;/section&#x3E;
+                                &#x3C;section id=&#x22;playerTwo&#x22;&#x3E;
+                                    &#x3C;h3&#x3E;Player 2&#x3C;/h3&#x3E;
+                                    &#x3C;div class=&#x22;controls&#x22;&#x3E;
+                                        &#x3C;label&#x3E;Higher
+                                            &#x3C;input type=&#x22;radio&#x22; class=&#x22;controlBtns&#x22; id=&#x22;player2High&#x22; /&#x3E;
+                                        &#x3C;/label&#x3E;
+                                        &#x3C;p&#x3E;Points:&#x3C;span id=&#x22;player2Points&#x22;&#x3E;0&#x3C;/span&#x3E;&#x3C;/p&#x3E;
+                                        &#x3C;label&#x3E;Lower
+                                            &#x3C;input type=&#x22;radio&#x22; class=&#x22;controlBtns&#x22; id=&#x22;player2Low&#x22; /&#x3E;
+                                        &#x3C;/label&#x3E;
+                                    &#x3C;/div&#x3E;
+                                &#x3C;/section&#x3E;
+                            &#x3C;/main&#x3E;
+                
+                            &#x3C;footer&#x3E;
+                                &#x3C;h5&#x3E;Copyright&#x3C;/h5&#x3E;
+                            &#x3C;/footer&#x3E;
+                
+                            &#x3C;script src=&#x22;js/app.js&#x22;&#x3E;&#x3C;/script&#x3E;
+                        &#x3C;/body&#x3E;&#x3C;/html&#x3E;
+                    </code>
+                </pre>
+                <br>
+                <p>
+                    <strong>Note:</strong> The very basic CSS for this game (positioning and such). We welcome you to
+                    put your own style on the game.
+                </p>
+                <br>
+                <pre>
+                    <code class="language-css">
+                        * {
+                            margin: 0;
+                            padding: 0;
+                            box-sizing: border-box;
+                            font-family: Helvetica, sans-serif;
+                        }
+                        
+                        header {
+                            height: 10vh;
+                            display: flex;
+                            width: 100%;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                        
+                        h1 {
+                            font-size: 3rem;
+                        }
+                        
+                        main {
+                            display: flex;
+                            width: 90%;
+                            margin: 0 auto;
+                            height: 85vh;
+                            color: lightslategray;
+                        }
+                        
+                        main > section {
+                            width: 33%;
+                            margin: 0 20px;
+                            box-shadow: 2px 0 9px 2px #aaaaaa;
+                            border-radius: 2px;
+                        }
+                        
+                        #playerOne {
+                            height: 50vh;
+                            margin: auto 0;
+                        }
+                        
+                        #playerTwo {
+                            height: 50vh;
+                            margin: auto 0;
+                        }
+                        
+                        .controls {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            height: 80%;
+                        }
+                        
+                        .controls > p {
+                            margin: 20px 0;
+                        }
+                        
+                        .controls label{
+                            background-color: teal;
+                            padding: 10px 30px;
+                            color: whitesmoke;
+                            cursor: pointer;
+                            border: none;
+                            border-radius: 0;
+                        }
+                        
+                        .controls input{
+                            opacity: 1;
+                        }
+                        
+                        h3 {
+                            text-align: center;
+                            margin: 50px 0 50px 0;
+                        }
+                        
+                        #numberGen {
+                            height: 80%;
+                            margin-top: 40px;
+                        }
+                        
+                        h2 {
+                            text-align: center;
+                            margin: 10px 0;
+                            font-size: 2rem;
+                            margin-top: 60px;
+                        }
+                        
+                        #explainer {
+                            text-align: center;
+                            width: 70%;
+                            margin: 0 auto 50px auto;
+                        }
+                        
+                        #roll {
+                            font-size: 6rem;
+                        }
+                        
+                        footer {
+                            background-color: black;
+                            color: white;
+                            height: 80px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                        
+                        #goBack{
+                            text-align: center;
+                            margin-top:10px;
+                        }
+                    </code>
+                </pre>
+            </article>
+            <article>
+                <div class="lesson-hl">
+                    <h2 id="lesson1">Lesson 1</h2>
+                    <h3>Variables</h3>
+                </div>
+                <p>
+                    One of the first things you will have to know if you want to do anything in JavaScript is to know
+                    about variables. These may sound like complicated math terms but they’re not. Rest easy, my
+                    friend.<br>
+                    Declaring a variable is how we grab certain elements from our HTML and insert it in our JavaScript
+                    so we can manipulate it.<br>
+                    In ES6 (which is the latest iteration of JavaScript) there are multiple ways to declare a variable
+                    whereas in previous years you only had one (the var keyword).
+                </p>
+                <p>
+                    Say you had made a button in HTML saying “Click me” and given it an id of click-button. To pull that
+                    button into our JavaScript, so we can manipulate it and make it do stuff when we click it, we can
+                    use two keywords; let or const. The difference in using these is we can’t reassign the value of a
+                    const later on as it is a constant, whereas let is flexible.<br>
+                    In this tutorial we will be using a mix of both.
+                </p>
+                <p>
+                    To grab our click-button we could go:
+                </p>
+                <br>
+                <pre>
+                    <code class="language-js">
+                        let ourBtn = document.getElementById(‘click-button’);
+                    </code>
+                </pre>
+                <br>
+                <p>
+                    It is important to know for new users that the label (name) we gave our variable could be nearly
+                    anything. In this case we called it ourBtn and that is how we from now on refer to our click-button
+                    in our tutorial.
+                </p>
+                <p>
+                    <strong>Terminology note:</strong> Later on we will be declaring variables inside the code-block of
+                    functions. These are called <em>local variables</em> whereas the ones declared outside a code-block
+                    is called a <em>global variable</em>.<br><br>
+                    <strong>Pro-tip:</strong> When programming in JavaScript you will be making a variable (like above)
+                    a lot. To save those precious keystrokes we'll show you a shortcut.
+                    <br><br>
+                    Throughout our code we have been using <em>$</em> as a shortcut for
+                    <em>document.getElementById</em>.
+                    <br><br>
+                    Make this function at the top of your JavaScript document to bind the <em>$</em> character as the
+                    shortcut.
+                </p>
+                <pre>
+                    <code class="language-js">
+                        let $ = (x) => {
+                            return document.getElementById(x);
+                        }
+                    </code>
+                </pre>
+            </article>
+            <article>
+                <div class="lesson-hl">
+                    <h2 id="lesson2">Lesson 2</h2>
+                    <h3>Mathematical operators</h3>
+                </div>
+                <p>
+                    “<em>Hey! You said no math.</em>” - No, I didn’t. But luckily for us JavaScript has our backs. It
+                    has math
+                    built into it and you can use it to calculate stuff for you.
+                    <br><br>
+                    In this tutorial we will need to tell JavaScript to do some simple calculations for us.
+                    <br><br>
+                    In our code we will use it to calculate a random number from a button click using the build-in
+                    Math()-method and when we cover if-statements to check if a value is higher or lower than something
+                    else.
+                    <br><br>
+                    The operators we will need to know for this tutorial are:
+                </p>
+                <br><br>
+                <div class="table-adjust">
+                    <table>
+                        <tr>
+                            <th>Operator</th>
+                            <th>Meaning</th>
+                        </tr>
+                        <tr>
+                            <td>+</td>
+                            <td>Addition</td>
+                        </tr>
+                        <tr>
+                            <td>-</td>
+                            <td>Subtraction</td>
+                        </tr>
+                        <tr>
+                            <td>*</td>
+                            <td>Multiplication</td>
+                        </tr>
+                        <tr>
+                            <td>++</td>
+                            <td>Incrementation</td>
+                        </tr>
+                        <tr>
+                            <td>=</td>
+                            <td>Assignment operator</td>
+                        </tr>
+                        <tr>
+                            <td>==</td>
+                            <td>Is equal to</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;</td>
+                            <td>Less than</td>
+                        </tr>
+                        <tr>
+                            <td>></td>
+                            <td>More than</td>
+                        </tr>
+                    </table>
+                </div>
+                <strong>Example 1</strong><br><br>
+                <pre>
+                        <code class="language-js">
+                            const rollIt = (min, max) => {
+                                let rando = Math.random() * max;
+                                let final = Math.floor(rando) + min;
+                                return final;
+                            }
+                        </code>
+                    </pre>
+                <p>
+                    <em>Here we used * and + to calculate variables with each other.</em>
+                    <br><br>
+                    <strong>Example 2</strong><br><br>
+                </p>
+                <pre>
+                    <code class="language-js">
+                        if ($('player1Low').checked) {
+                            if (arr[arr.length - 1] &lt; arr[arr.length - 2]) {
+                                $('player1Points').innerHTML++;
+                            } else {
+                                console.log('false');
+                            }
+                        }
+                    </code>
+                </pre>
+                <p>
+                    <em>Here is an example of checking whether or not one statement is less than (&lt;) the other.</em>
+                </p>
+            </article>
+            <article>
+                <div class="lesson-hl">
+                    <h2 id="lesson3">Lesson 3</h2>
+                    <h3>Functions</h3>
+                </div>
+                <p>
+                    Functions are a very important part of JavaScript! Functions make the website exciting and you can
+                    manipulate everything on your website, which makes it fun and exciting. But before we can do any
+                    function I would like to declare two ways to store your variables which we only glossed over in the
+                    first lesson.
+                    <br><br>
+                    <em>Local variables</em> and <em>Global variables</em>.
+                    <br><br>
+                    <strong>Global variables</strong> should always be declared at the top of the javascript document.
+                    We only use global
+                    variables when we want to use the same variable more than one time in the document.
+
+                    <em>Work smarter, not harder!</em>
+                    <br><br>
+                    With global variables we can make sure we only have to write said variable once. I'll show you an
+                    example.<br>
+                    Every time we want to get an element from the HTML we want to
+                    make a variable which contains the HTML data. We write:
+                </p>
+                <pre>
+                    <code class="language-js">
+                        let roll = document.getElementById('roll');
+                    </code>
+                </pre>
+                <p>
+                    But if we use the pro-tip from earlier we can simply write the following which is an example of a
+                    global variable.
+                </p>
+                <pre>
+                    <code class="language-js">
+                        $('roll');
+                    </code>
+                </pre>
+                <p>
+                    <strong>Local variables</strong> are located in a function and will only be used once. The reason we
+                    write local
+                    variables is that it's easy and even easier to find again because everything that is needed is
+                    written in
+                    that function. Instead of needing to find the variables at the top of the document everytime.
+
+                    Before we begin breaking it down you should know that there are three different ways of writing a
+                    function:
+                </p>
+                <pre>
+                    <code class="language-js">
+                        const rollIt = (min, max) => {
+                            //actions
+                        }
+
+                        function rollIt (min, max) {
+                            //actions
+                        }
+
+                        const rollIt = function (min, max) {
+                            //actions
+                        }
+                    </code>
+                </pre>
+                <p>
+                    These functions work the same way. So pick the one that makes the most sense to you.
+                </p>
+                <br><br>
+                <p>
+                    <strong>Lets break it down!</strong>
+                </p>
+                <br><br>
+                <p>
+                    We name the function - not just for looks - but so that we can call (invoke) it later.<br>
+                    In this case we named it <em>rollIt</em>.
+                    <br><br>
+                    Between the parentheses in the function we put parameters. In this case we do <em>(min, max)</em>
+                    which technically doesn't do anything on its own. But it helps us because when we call the function
+                    later on by writing <em>rollIt()</em> and enter our minimum number to maximum number.
+                    <br><br>
+                    Between the curly brackets ({}) we write what our function should perform when called. In this case
+                    we need to perform two calculations to generate a random number with JavaScript's built-in
+                    <em>Math()</em> method.<br>
+                </p>
+                <pre>
+                    <code class="language-js">
+                        const rollIt = (min, max) => {
+                            let rando = Math.random() * max;
+                            let final = Math.floor(rando) + min;
+                            return final;
+                        }
+                    </code>
+                </pre>
+                <p>
+                    <em>We'll cover it in greater detail in lesson 5</em>.
+                </p>
+                <p>
+                    <strong>Lets make a function that resets the game</strong>
+                    <br><br>
+                    Call the function <em>newGame</em> and then we need both players' points reset to 0.<br>
+                    We also want <em>roll</em> reset so it says "Roll Me!" like it did in the beginning.<br>
+                    Finally we wnt our array, keeping score, reset. More on that later. For now, it should look
+                    something like this:
+                </p>
+                <pre>
+                    <code class="language-js">
+                        let newGame = () => {
+                            $('player1Points').innerHTML = 0;
+                            $('player2Points').innerHTML = 0;
+                            arr = [];
+                        }
+                    </code>
+                </pre>
+            </article>
+            <article>
+                <div class="lesson-hl">
+                    <h2 id="lesson4">Lesson 4</h2>
+                    <h3>addEventListener</h3>
+                </div>
+                <p>
+                    So the event listener is very simple! The reason we use events listeners is to make the browser look
+                    or listen at what we tell it to listen for.<br>
+                    For example in the game we have the roll the dice when we press the button.<br>
+                    We need our script to look after when we press it. We do that by:
+                </p>
+                <pre>
+                    <code class="language-js">
+                        $("rollBtn").addEventListener('click', () => {
+                            //And then add all functions we want to display when clicked.
+                        }
+                    </code>
+                </pre>
+                <p>
+                    Just like with the function there are several ways to write an event listener:
+                </p>
+                <pre>
+                    <code class="language-js">
+                        $("rollBtn").addEventListener('click', () => {
+                            //actions
+                        }
+                    
+                        $("rollBtn").addEventListener('click', function() {
+                            //actions
+                        }
+
+                        $("rollBtn").addEventListener('click', nameofFunction);    
+                    </code>
+                </pre>
+            </article>
+            <article>
+                <div class="lesson-hl">
+                    <h2 id="lesson5">Lesson 5</h2>
+                    <h3>Randomizer</h3>
+                </div>
+                <p>
+                    How to you generate a random number and what do we use it for?
+                    <br><br>
+                    In JavaScript, to get a random number between 0 and 1 we can use the function Math.random(), but in
+                    order to get a result between 1 and 10 we would have to add a couple things to a random number
+                    function.
+                    <br><br>
+                    In our game we want to use it to generate a random number to display as a result for rolling the
+                    dice.
+                    <br><br>
+                    Generating a random number can be explained in two parts. Let’s start with explaining exactly what
+                    Math.random() does. Say you have some code that sets a variable to be equal Math.random() and print
+                    it out.
+                </p>
+                <pre>
+                    <code class="language-js">
+                        let randomNumber = Math.random();
+                        console.log(randomNumber);  //prints out result of randomNumber
+                    </code>
+                </pre>
+                <p>
+                    The result would always equal a number between 0 and 1, as a decimal. But if we want a number
+                    between 0 and 10 we would have to multiply 10 to Math.random().
+                </p>
+                <pre>
+                    <code class="language-js">
+                        let randomNumber = Math.random() * 10;
+                        console.log(randomNumber);
+                    </code>
+                </pre>
+                <p>
+                    Finally, to be able to get a number between 1 and 10, we would have to add the minimum number we
+                    would want shown.
+                </p>
+                <pre>
+                    <code class="language-js">
+                        let randomNumber = Math.random() * 10 + 1;
+                    </code>
+                </pre>
+                <p>
+                    However, this would also give a result above 10. In order to correct this we move on to the second
+                    part of the explanation.
+                    <br><br>
+                    The second part we will be explaining is the Math.floor() function.<br>
+                    Math.floor() returns an integer value rounded down.<br>
+                    So say you have a variable that has a value of 10.4, Math.floor() rounds that value down to 10.<br>
+                    We can use this on our random number to generate a number that is exactly between 1 and 10.
+                </p>
+                <pre>
+                    <code class="language-js">
+                        let randomNumber = Math.floor(Math.random() * 10 +1);
+                    </code>
+                </pre>
+                <p>
+                    Wrap it all inside Math.floor() and we get a value between 1 and 10.
+
+                    In our game, we can use this as a function to roll a die so it becomes easier to access and change
+                    values wherever we use it. Make a function with 2 parameters, min value and max value.
+                </p>
+                <pre>
+                    <code class="language-js">
+                        const rollIt = (min, max) => {
+                            let rando = Math.random() * max;
+                            let final = Math.floor(rando) + min;
+                            return final;
+                        }
+                    </code>
+                </pre>
+                <p>
+                    Now whatever we want our interval to be, is to be written inside the parameters of the function, and
+                    can be used anywhere.
+                </p>
+            </article>
+            <article>
+                <div class="lesson-hl">
+                    <h2 id="lesson6">Lesson 6</h2>
+                    <h3>Arrays</h3>
+                </div>
+                <p>
+                    How do we make an array, and what do we use it for?
+                    <br><br>
+                    Arrays in JavaScript are used to store multiple value. Arrays can store Integers, Strings and
+                    Booleans. Arrays are identified with the brackets [] symbol. We use arrays in our game to store
+                    multiple dice throw values.
+                    <br><br>
+                    In our game, we use arrays in four ways. First we use them to declare an empty array. There are two
+                    ways to declare an empty array:
+                </p>
+                <pre>
+                    <code class="language-js">
+                        let arr = [];
+
+                        // or
+                
+                        let arr = new Array();
+                
+                        // Many programmers use the first way because it is shorter. 
+                    </code>
+                </pre>
+                <p>
+                    Second for adding values to the empty array. To do this we use the push method. The method push adds
+                    a new item to the end of an array. To show this we try and push some values into our array.
+                    <br><br>
+                    Now the array would have three values pushed into the array, so now the array looks like this:
+                </p>
+                <pre>
+                    <code class="language-js">
+                        arr.push(2);
+                        arr.push(3);
+                        arr.push(4);
+
+                        console.log(arr);
+                        //printed array would be [2, 3, 4]
+                    </code>
+                </pre>
+                <p>
+                    Note that each individual value has a place in the array called indexes. Starting from 0 and
+                    increasing. So the value 2 was placed at index 0, the value 3 was placed at index 1, the value 4 was
+                    placed at index 2 and so on.
+                    <br><br>
+                    In order to store our dice values we randomly throw from the previous lesson. We could push the
+                    value that we get from the random number that is stored in our variable and push it into our array.
+                </p>
+                <pre>
+                    <code class="language-js">
+                        arr.push(rollIt(1, 10));
+                    </code>
+                </pre>
+                <p>
+                    This would store a random number between 1 and 10 into our array.
+                    <br><br>
+                    Thirdly we use them for locating values in the array. In our game, we have to check whether the
+                    number generated next is higher or lower than the previous number so we have to be able to locate
+                    the last indexed value. To locate the last indexed value we can use the “length” property.
+                </p>
+                <pre>
+                    <code class="language-js">
+                        arr.length;
+                    </code>
+                </pre>
+                <p>
+                    This shows the length of the array, in our previous example we had pushed 3 values into the array so
+                    the length of the array would be 3.<br>
+                    However, there are no values located at the third index so we cannot use this to obtain the value at
+                    index 3.<br>
+                    Therefore, in order for us to get the value at index 2, we can subtract 1 to the length of the
+                    array, and therefore have access to the very last value in the array.
+                </p>
+                <pre>
+                    <code class="language-js">
+                        arr.length - 1;
+                    </code>
+                </pre>
+                <p>
+                    Lastly for emptying the array. We often want to reset arrays when we restart games. There is a very
+                    simple way to do this, and it is done in the same way as declaring an array.
+                </p>
+                <pre>
+                    <code class="language-js">
+                        let arr = [];
+                    </code>
+                </pre>
+            </article>
+            <article>
+                <div class="lesson-hl">
+                    <h2 id="lesson7">Lesson 7</h2>
+                    <h3>if ... else statements</h3>
+                </div>
+                <p>
+                    <em>if ... else</em> statements are a part of the programming fundamentals. Basically, they tell a
+                    statement,
+                    that “if…”, “or else…” but you can use it much more advanced than that. In our game, we want to use
+                    it to:
+                    <br><br>
+                </p>
+                <ol>
+                    <li>Check which player guesses correctly, give them a point and reset the turn.</li>
+                    <li>Declare a winner and reset the game, so that we can play again.</li>
+                </ol>
+                <br><br>
+                <p>
+                    <strong>But how do we do that?</strong>
+                    <br><br>
+                    Let’s start with the first one, checking which player guesses correctly and gains a point. So why do
+                    we want to use an if else statement for this? Because it makes sense. Why make something
+                    complicated, when we can just say “If player1 guesses correctly, give them a point. Else, don’t”?
+                    <br><br>
+                    To make this, we first make the statement:
+                </p>
+                <pre>
+                    <code class="language-js">
+                        if ($("player1High").checked) {
+
+                        }
+                    </code>
+                </pre>
+                <p>
+                    This statement says: If player1High is checked, do something. This is the base of our if statement,
+                    because we want to be able to check if the player clicked.
+                    <br><br>
+                    We want the function to be able to check if we guessed right, which we will do so:
+                </p>
+                <pre>
+                    <code class="language-js">
+                        if ($("player1High").checked) { 
+                            if (arr[arr.length - 1] > arr[arr.length - 2]) {
+                                console.log("correct");
+                                $("player1Points").innerHTML++;
+                            } else {
+                                console.log("false");
+                            }
+                        }
+
+                        if ($("player1Low").checked) {
+                            if (arr[arr.length - 1] &lt; arr[arr.length - 2]) {
+                                console.log("correct");
+                                $("player1Points").innerHTML++;
+                            } else {
+                                console.log("false");
+                            }
+                        }
+                    </code>
+                </pre>
+                <p>
+                    In this snippet, we make an if statement within an if statement. We do this, because we want to make
+                    sure that it knows if you guessed correctly or not.<br>
+                    We do this by making a correct or false answer which says “If(guess) is correct, give a point to
+                    player1Points innerHtml and if it’s not correct, do not give a point.
+                    <br><br>
+                    This is now our first if-else statement, which makes sure that we are able to get points if we guess
+                    correctly.
+                    <br><br>
+                    For our game, we want to be able to use these commands, when we press the roll button, so that the
+                    gameplay is smooth, and so that when we eventually do get a point, it resets so that we can use it
+                    again. We do this by wrapping it in a function, so that we can easily access it later when we need
+                    it. Let’s call it player1Turn.<br>
+                    After our if else statement, we need to reset the players turn, which we will do by setting
+                    id”).checked = false;
+                </p>
+                <pre>
+                    <code class="language-js">
+                        let player1Turn = () => {
+                            if ($("player1High").checked) {            
+                                if (arr[arr.length - 1] > arr[arr.length - 2]) {
+                                    console.log("correct");
+                                    $("player1Points").innerHTML++;
+                                } else {
+                                    console.log("false");
+                                }
+                            }
+
+                            if ($("player1Low").checked) {
+                                if (arr[arr.length - 1] &lt; arr[arr.length - 2]) {
+                                    console.log("correct");
+                                    $("player1Points").innerHTML++;
+                                } else {
+                                    console.log("false");
+                                }
+                            }
+
+                            $("player1Low").checked = false;
+                            $("player1High").checked = false;
+                        }                                            
+                    </code>
+                </pre>
+                <p>
+                    This is now our if else statement which we put inside a function. This checks if the player pressed
+                    the higher or lower button and decides which one is the correct one and allocates points depending
+                    on the result. We can copy this code snippet and say player2x instead of the current ids, so that we
+                    target the player 2 in our HTML.
+                    <br><br>
+                    Now we have made a function, which has if else statements in it which will determine which player
+                    determines correctly, give them a point and reset the turn. Now we need to declare a winner and
+                    reset the game. This we will do simply by saying “If player1 has 3 points, player 1 wins, or else if
+                    player 2 has 3 points, player 2 wins.
+                </p>
+                <pre>
+                    <code class="language-js">
+                        let winner = () => {
+                            if($("player1Points").innerHTML == 3) {
+                                alert("Player 1 WINS!");
+                                newGame();
+                            } else if($("player2Points").innerHTML == 3) {
+                                alert("Player 2 WINS!");
+                                newGame();
+                            }
+                        }                                            
+                    </code>
+                </pre>
+                <p>
+                    In the snippet above, we use an alert and call the “newGame” function. The alert is used to announce
+                    who the player is, but you will get a bit more information about that later. The “newGame” function
+                    is a function we made earlier, which sets the points to 0 and resets the roll mechanism in the game.
+                </p>
+            </article>
+            <article>
+                <div class="lesson-hl">
+                    <h2 id="lesson8">Lesson 8</h2>
+                    <h3>Alerts</h3>
+                </div>
+                <p>
+                    An alert is a pop-up, that appears when executed in your script. This could be used in many ways but
+                    is often used to make sure information gets properly through to the user. In our game, it would be
+                    nice to know who wins, right? Making an alert is simple, the only code you need to write is:
+                </p>
+                <pre>
+                    <code class="language-js">
+                        function useAlert(){
+                            alert("This is our alert message !");
+                        }  
+                    </code>
+                </pre>
+                <p>
+                    Using this function with a for example a button, would trigger an alert which states “This is our
+                    alert message!”.
+                    <br><br>
+                    It looks quite simple, and we used it in our lesson about “If Else Statements” to declare who is the
+                    winner, here is the code snippet:
+                </p>
+                <pre>
+                    <code class="language-js">
+                        let winner = () => {
+                            if($("player1Points").innerHTML == 3) {
+                                alert("Player 1 WINS!");
+                                newGame();
+                            } else if($("player2Points").innerHTML == 3) {
+                                alert("Player 2 WINS!");
+                                newGame();
+                            }
+                        }               
+                    </code>
+                </pre>
+                <p>
+                    In this <em>if ... else</em> statement we simply put an alert method inside the statement, to
+                    declare who wins based on who reaches 3 points first. We put in the newGame() to call on our
+                    reset-function.
+                </p>
+            </article>
+            <div class="end-message">
+                <h4>Congratulations!</h4>
+                <p>
+                    You have now programmed a higher/lower game in JavaScript
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footere-text">
+            <p>Copyright</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

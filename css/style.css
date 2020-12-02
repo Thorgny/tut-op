@@ -54,14 +54,14 @@ footer {
     justify-content: center;
 }
 
-#selectors {
+#selector-boxes {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 40%;
 }
 
-.selector {
+.selector-box {
     height: 200px;
     width: 200px;
     background-color: #F5C64D;
@@ -73,7 +73,7 @@ footer {
     border-radius: 50px;
 }
 
-.selector:hover {
+.selector-box:hover {
     transform: scale(1.3);
     transition: .3s ease-in-out;
     background-color: #FA9B41;
@@ -177,3 +177,83 @@ h2 {
 
 /* Tutorial styles */
 
+#tut-main {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+aside {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    min-height: 85vh;
+    background-color:#00cec9;
+}
+
+ul li {
+    list-style: none;
+    padding-bottom: 40px;
+}
+
+ul li a {
+    color: #ffffff;
+    font-size: 1.1em;
+    text-decoration: none;
+}
+
+#tut-main > section {
+    width: 85%;
+    height: 85vh;
+    overflow-y: scroll;
+}
+
+article {
+    margin: 20px auto 0 auto;
+    width: 80%;
+    border: 1px dotted black;
+    padding: 10px;
+}
+
+#tut-main > h2, h3 {
+    margin-bottom: 15px;
+}
+
+.table-adjust {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    width: 15%;
+    border: 1px solid black;
+}
+
+td {
+    border: 1px solid black;
+}
+
+td:nth-child(odd) {
+    text-align: center;
+}
+
+th, td:nth-child(even) {
+    text-align: end;
+}
+
+.end-message {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px 0;
+}
+
+h4 {
+    font-size: 3rem;
+    text-transform: uppercase;
+}
+
+ol {
+    padding-left: 16px;
+}

@@ -16,6 +16,25 @@ let $ = (x) => {
     return document.getElementById(x);
 };
 
+/*
+- Make custom winner message with retry icon and name of winner displayed
+- add/remove .active on lessons li's (scrollevents?)
+*/
+
+//copyright message
+$('cpryear').innerHTML = `&copy; - Web Spec - ${new Date().getFullYear()}`;
+
+//name changers
+$("edit-name-p1").addEventListener("click", () => {
+    let namep1 = window.prompt("What's your name?");
+    $("p1Name").innerHTML = namep1;
+});
+
+$("edit-name-p2").addEventListener("click", () => {
+    let namep2 = window.prompt("What's your name?");
+    $("p2Name").innerHTML = namep2;
+});
+
 //initialize global variables
 let arr = [];
 const noOfRounds = 3;
